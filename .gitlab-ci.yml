@@ -23,7 +23,7 @@ build-mcc:
     GIT_STRATEGY: none
   before_script:
     - echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
-    - apk add mono
+    - apk add git mono
     - git clone https://github.com/ORelio/Minecraft-Console-Client
   script:
     - cd Minecraft-Console-Client
