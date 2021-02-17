@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+commonAnnotations:
+  app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
+  app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
+commonLabels:
+  app: ${CI_PROJECT_NAME}
+images:
+  - name: registry.eglo.ga/none
+    newName: ${CI_REGISTRY_IMAGE}
+    newTag: "${CI_PIPELINE_ID}"
+generatorOptions:
+  disableNameSuffixHash: true
+secretGenerator:
+  - name: secrets
+    files:
+      - MATRIX_ACCESS_TOKEN=${MATRIX_ACCESS_TOKEN}
+configMapGenerator:
+  - name: configs
+    files:
+      - mcc-conf=${MCC_CONF}
+  - name: envs
+    files:
+      - MATRIX_BASEURL=${MATRIX_BASEURL}
+      - MATRIX_USER=${MATRIX_USER}
+      - MATRIX_ROOM=${MATRIX_ROOM}
+      - MINECRAFT_SERVER=${MINECRAFT_SERVER}
+  - name: langs
+    files:
+      - zh_TW.lang=lang/zh_TW.lang
+resources:
+  - deployment.yml

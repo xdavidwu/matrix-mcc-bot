@@ -1,0 +1,51 @@
+stages:
+  - build
+  - package
+  - deploy
+
+build:
+  stage: build
+  image: alpine:edge
+  before_script:
+    - apk add npm git tar
+    - npm ci
+  script:
+    - echo $CI_COMMIT_SHA > version
+    - tar -cf app.tar --exclude-vcs --exclude=app.tar .
+  artifacts:
+    paths:
+      - app.tar
+
+build-mcc:
+  stage: build
+  image: alpine:edge
+  variables:
+    GIT_STRATEGY: none
+  before_script:
+    - echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
+    - apk add mono
+    - git clone https://github.com/ORelio/Minecraft-Console-Client
+  script:
+    - cd Minecraft-Console-Client
+    - xbuild MinecraftClient.sln
+    - cp MinecraftClient/bin/Debug/MinecraftClient.exe ../
+  artifacts:
+    paths:
+      - MinecraftClient.exe
+
+build-lang:
+  stage: build
+  image: alpine:edge
+  before_script:
+    - apk add jq
+  script:
+    - ./mcc_download_new_lang.sh zh_tw
+  artifacts:
+    paths:
+      - lang/zh_TW.lang
+
+include:
+  - project: ci-modulize/kubernetes
+    file:
+      - package.yml
+      - deploy.yml

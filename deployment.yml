@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: production-discord-mcc-bot
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: discord-mcc-bot
+          image: registry.eglo.ga/none
+          envFrom:
+            - configMapRef:
+                name: envs
+            - secretRef:
+                name: secrets
+          volumeMounts:
+            - name: configs
+              mountPath: /srv/MinecraftClient.ini
+              subPath: mcc-conf
+            - name: langs
+              mountPath: /srv/lang
+      volumes:
+        - name: configs
+          configMap:
+            name: configs
+        - name: langs
+          configMap:
+            name: langs
