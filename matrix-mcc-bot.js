@@ -18,17 +18,17 @@ client.joinRoom(process.env.MATRIX_ROOM);
 mcc.stdout.on('data', (data) => {
 	str = data.toString('utf-8').replace(/§./g, '');
 	console.log('mcc: ' + str);
-	if (str.match(/^<.*> (@.*)? msgon\n$/)) {
+	if (str.match(/^<.*>( @.*:.*)? msgon\n$/)) {
 		block = false;
 		mcc.stdin.write('bot: msg on\n');
 		return;
 	}
-	if (str.match(/^<.*> (@.*)? msgoff\n$/)) {
+	if (str.match(/^<.*>( @.*:.*)? msgoff\n$/)) {
 		block = true;
 		mcc.stdin.write('bot: msg off\n');
 		return;
 	}
-	if (str.match(/^<.*> (@.*)? logfilters /)) {
+	if (str.match(/^<.*>( @.*:.*)? logfilters /)) {
 		let subcmd = str.replace(/^<.*> (@.*?) logfilters /, '').trimEnd();
 		console.log('logfilters ' + subcmd);
 		if (subcmd.match(/^list$/)) {
