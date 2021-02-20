@@ -86,9 +86,10 @@ mcc.on('exit', (code, signal) => {
 	process.exit(code);
 });
 
-client.on('Room.timeline', (event, room) => {
+client.on('Room.timeline', (event, room, toStartOfTimeline, removed, data) => {
 	if (event.getType() !== 'm.room.message' ||
-			room.roomId !== process.env.MATRIX_ROOM) {
+			room.roomId !== process.env.MATRIX_ROOM ||
+			!data.liveEvent ) {
 		return;
 	}
 	const content = event.getContent().body;
