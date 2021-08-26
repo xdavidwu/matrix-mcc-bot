@@ -6,7 +6,7 @@ if [ ! -n "$1" ];then
 	exit 1
 fi
 
-LANG_SUF=$(echo $1 | cut -d '_' -f 2 | tr -s '[:lower:]' '[:upper:]')
+LANG_SUF=$(echo $1 | cut -d '_' -f 2 -s | tr -s '[:lower:]' '[:upper:]')
 
 [ -n "$LANG_SUF" ] && LANG_SUF=_$LANG_SUF
 
