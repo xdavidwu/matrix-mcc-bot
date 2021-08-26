@@ -39,10 +39,10 @@ build-lang:
   before_script:
     - apk add jq
   script:
-    - ./mcc_download_new_lang.sh zh_tw
+    - ./mcc_download_new_lang.sh lzh
   artifacts:
     paths:
-      - lang/zh_TW.lang
+      - lang/lzh.lang
 
 include:
   - project: ci-modulize/kubernetes

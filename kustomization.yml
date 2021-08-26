@@ -27,6 +27,6 @@ configMapGenerator:
       - MINECRAFT_SERVER=${MINECRAFT_SERVER}
   - name: langs
     files:
-      - zh_TW.lang=lang/zh_TW.lang
+      - lzh.lang=lang/lzh.lang
 resources:
   - deployment.yml
