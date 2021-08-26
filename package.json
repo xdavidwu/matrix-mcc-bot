@@ -9,6 +9,6 @@
   "author": "xdavidwu",
   "license": "ISC",
   "dependencies": {
-    "matrix-js-sdk": "^9.7.0"
+    "matrix-js-sdk": "^12.3.1"
   }
 }
