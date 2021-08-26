@@ -61,7 +61,7 @@ mcc.stdout.on('data', (data) => {
 			mcc.stdin.write('Unrecognised subcommand\n');
 		}
 	}
-	if (str.startsWith('mcc joined the game')) {
+	if (str.startsWith('mcc joined the game') || str.startsWith('mcc 來此共戲')) {
 		mcc.stdin.write('/gamemode spectator\n');
 	}
 	if (!block) {
