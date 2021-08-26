@@ -106,7 +106,10 @@ client.on('Room.timeline', (event, room, toStartOfTimeline, removed, data) => {
 	} else if (content.startsWith('.mcc ')) {
 		console.log('receive chat: ' + content);
 		mcc.stdin.write(`${event.getSender()}: ${content.substring(5)}\n`);
+	} else {
+		return;
 	}
+	client.setRoomReadMarkers(room.roomId, event.getId(), event);
 });
 
 client.startClient();
