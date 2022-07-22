@@ -28,7 +28,7 @@ build-mcc:
     - git submodule update --init --recursive .
   script:
     - cd MinecraftClient
-    - dotnet publish --self-contained -r linux-musl-x64 -c Release
+    - dotnet publish -f net6.0 --self-contained -r linux-musl-x64 -c Release
     - cp bin/Release/net6.0/linux-musl-x64/publish/MinecraftClient ../../
   artifacts:
     paths:
