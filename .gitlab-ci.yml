@@ -22,7 +22,7 @@ build-mcc:
   variables:
     GIT_STRATEGY: none
   before_script:
-    - apk add git dotnet-hostfxr
+    - apk add git dotnet6-hostfxr
     - git clone https://github.com/ORelio/Minecraft-Console-Client
   script:
     - cd Minecraft-Console-Client
