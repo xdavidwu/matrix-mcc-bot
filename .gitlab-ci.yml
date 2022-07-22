@@ -26,6 +26,7 @@ build-mcc:
     - git clone https://github.com/ORelio/Minecraft-Console-Client
     - cd Minecraft-Console-Client
     - git submodule update --init --recursive .
+    - sed 's/;net7.0//' ConsoleInteractive/ConsoleInteractive/ConsoleInteractive/ConsoleInteractive.csproj -i
   script:
     - cd MinecraftClient
     - dotnet publish -f net6.0 -r linux-musl-x64 -c Release
