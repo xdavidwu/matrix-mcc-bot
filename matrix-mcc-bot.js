@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { spawn } = require('child_process');
 const sdk = require('matrix-js-sdk');
-const mcc = spawn('./MinecraftClient',
+const mcc = spawn('./MinecraftClient/MinecraftClient',
 	['mcc', '-' , process.env.MINECRAFT_SERVER,
 		'BasicIO']);
 

@@ -30,10 +30,10 @@ build-mcc:
   script:
     - cd MinecraftClient
     - dotnet publish -f net6.0 -r linux-musl-x64 -c Release
-    - cp bin/Release/net6.0/linux-musl-x64/publish/MinecraftClient ../../
+    - cp -a bin/Release/net6.0/linux-musl-x64/publish ../../
   artifacts:
     paths:
-      - MinecraftClient
+      - publish
 
 build-lang:
   stage: build
