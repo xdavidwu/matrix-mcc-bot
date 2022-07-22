@@ -25,9 +25,9 @@ build-mcc:
     - apk add git dotnet6-sdk
     - git clone https://github.com/ORelio/Minecraft-Console-Client
   script:
-    - cd Minecraft-Console-Client
+    - cd Minecraft-Console-Client/MinecraftClient
     - dotnet publish --self-contained -r linux-musl-x64 -c Release
-    - cp MinecraftClient/bin/Release/net6.0/linux-musl-x64/publish/MinecraftClient ../
+    - cp bin/Release/net6.0/linux-musl-x64/publish/MinecraftClient ../../
   artifacts:
     paths:
       - MinecraftClient
